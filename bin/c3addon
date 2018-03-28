@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+
+const c3addon = require('../lib')
+c3addon.run();

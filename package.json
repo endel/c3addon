@@ -1,0 +1,32 @@
+{
+  "name": "c3addon",
+  "version": "1.0.0",
+  "description": "Commandline utility to manage your Construct 3 addon.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/gamestdio/c3addon.git"
+  },
+  "keywords": [
+    "construct3",
+    "construct3-addon",
+    "scirra"
+  ],
+  "author": "Endel Dreyer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gamestdio/c3addon/issues"
+  },
+  "homepage": "https://github.com/gamestdio/c3addon#readme",
+  "devDependencies": {
+    "typescript": "^2.8.1"
+  },
+  "dependencies": {
+    "archiver": "^2.1.1",
+    "http-server": "^0.11.1",
+    "minimist": "^1.2.0"
+  }
+}
