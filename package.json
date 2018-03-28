@@ -1,7 +1,7 @@
 {
   "name": "c3addon",
   "version": "1.0.0",
-  "description": "Commandline utility to manage your Construct 3 addon.",
+  "description": "Construct 3 Commandline Addon Authoring Utilities",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
