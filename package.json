@@ -1,10 +1,14 @@
 {
   "name": "c3addon",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Construct 3 Commandline Addon Authoring Utilities",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tsc -w"
+  },
+  "bin": {
+    "c3addon": "./bin/c3addon"
   },
   "repository": {
     "type": "git",
@@ -22,6 +26,8 @@
   },
   "homepage": "https://github.com/gamestdio/c3addon#readme",
   "devDependencies": {
+    "@types/archiver": "^2.1.1",
+    "@types/node": "^9.6.1",
     "typescript": "^2.8.1"
   },
   "dependencies": {
