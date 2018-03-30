@@ -1,7 +1,6 @@
 # Construct 3 Addon Authoring Utilities (`c3addon`)
 
-Not implemented. This is just a rough idea for an Construct 3 Addon Authoring
-Utility.
+This tool helps you to build and distribute your Construct 3 Addons.
 
 ## Installation
 
