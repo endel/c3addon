@@ -1,4 +1,4 @@
-# Construct 3 Addon Authoring Utilities (`c3addon`)
+# Construct 3 Addon Authoring Commandline Utilities (`c3addon`)
 
 This tool helps you to build and distribute your Construct 3 Addons.
 
