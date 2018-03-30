@@ -1,6 +1,6 @@
 {
   "name": "c3addon",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Construct 3 Commandline Addon Authoring Utilities",
   "main": "index.js",
   "scripts": {

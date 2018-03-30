@@ -2,6 +2,10 @@
 
 This tool helps you to build and distribute your Construct 3 Addons.
 
+## Requirements
+
+Node.js v8.0.0+
+
 ## Installation
 
 ```
