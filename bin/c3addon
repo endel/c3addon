@@ -3,6 +3,8 @@ const args = require('minimist')(process.argv);
 const c3addon = require('../lib')
 const command = args._[2];
 
+const downloads = require("../data/downloads.json");
+
 if (!c3addon[command]) {
     if (command) {
         console.log(`command '${command}' not found.\n`);
@@ -17,16 +19,23 @@ function displayHelp () {
     c3addon [command] [--options]
 
     Available commands:
-        - init (bootstrap an empty addon project)
-        - serve (start an http server for local development)
-        - pack (pack your addon into addon.c3addon, to be uploaded on Construct 3 Addon Listing)
-        - docs (generate docs.md file based on your aces.json)
+        init [${Object.keys(downloads).join("|")}]
+        (Bootstrap an empty addon project)
+
+        serve [--port 8080]
+        (Start an http server for local development)
+
+        pack
+        (Pack your addon into addon.c3addon, to be uploaded on Construct 3 Addon Listing)
+
+        docs
+        (Generate docs.md file based on your aces.json)
 
     General help:
-        Enable developer mode on Construct 3: https://www.construct.net/br/make-games/manuals/addon-sdk/guide/using-developer-mode
-        Open the Addon Manager, click on "Add dev addon", and enter this URL: http://localhost:5432/addon.json
+        - C3 Addon SDK Documentation: https://www.construct.net/br/make-games/manuals/addon-sdk
+        - Enable developer mode on Construct 3: https://www.construct.net/br/make-games/manuals/addon-sdk/guide/using-developer-mode
+        - Open the Addon Manager, click on "Add dev addon", and enter this URL: http://localhost:5432/addon.json
 `);
 }
 
-
-c3addon[command]();
+c3addon[command](args);

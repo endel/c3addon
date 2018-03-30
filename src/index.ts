@@ -1,7 +1,11 @@
-import * as httpServer from "http-server";
-import * as archiver from "archiver";
+import * as https from "https";
 import * as fs from "fs";
 import * as path from "path";
+import * as archiver from "archiver";
+import * as AdmZip from "adm-zip";
+import * as httpServer from "http-server";
+
+const downloads = require("../data/downloads.json");
 
 const VALID_EXTENSIONS = [
     'bmp', 'css', 'fx', 'gif', 'ico',
@@ -10,14 +14,41 @@ const VALID_EXTENSIONS = [
     'wasm', 'xml'
 ];
 
-export function init () {
-    console.log("INIT!");
+export function init (options) {
+    const type = options._[3];
+    if (!downloads[type]) {
+        console.error(`You must call "c3addon init [${Object.keys(downloads).join("|")}]"`);
+        return;
+    }
+
+    const outputPath = path.resolve(".");
+    const tmpZipPath = path.resolve('tmp.zip');
+
+    const zipFile = fs.createWriteStream(tmpZipPath);
+    const request = https.get(downloads[type], function (response) {
+        response.pipe(zipFile);
+    });
+
+    zipFile.on('close', function () {
+        // extract zip contents
+        const zip = new AdmZip(tmpZipPath);
+        zip.extractAllTo(outputPath);
+
+        const entries = zip.getEntries(); // an array of ZipEntry records
+        entries.forEach((zipEntry) => console.log("Added:", zipEntry.entryName));
+
+        // remove temporary zip file
+        fs.unlinkSync(tmpZipPath);
+
+        console.log("Success!");
+    });
 }
 
-export function serve () {
-    let server = httpServer.createServer({ cors: true });
-    server.listen(5432);
-    console.log("Local server is running on http://localhost:5432");
+export function serve (options?: any) {
+    const port = options.port || 5432;
+    const server = httpServer.createServer({ cors: true });
+    server.listen(port);
+    console.log(`Development server running on: http://localhost:${port}`);
 }
 
 export function pack () {
