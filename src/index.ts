@@ -79,5 +79,5 @@ export function pack () {
 }
 
 export function docs () {
-    console.log("DOCS!");
+    console.log("Not implemented.");
 }
