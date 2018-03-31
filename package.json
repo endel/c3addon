@@ -1,6 +1,6 @@
 {
   "name": "c3addon",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Construct 3 Addon Authoring Commandline Utilities",
   "main": "index.js",
   "scripts": {
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "adm-zip": "^0.4.7",
-    "archiver": "^2.1.1",
+    "glob": "^7.1.2",
     "http-server": "^0.11.1",
     "minimist": "^1.2.0"
   }
