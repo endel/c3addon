@@ -16,7 +16,7 @@ if (!c3addon[command]) {
 
 function displayHelp () {
     console.log(`Usage:
-    c3addon [command] [--options]
+    c3addon [command] [options] [--root dir]
 
     Available commands:
         init [${Object.keys(downloads).join("|")}]

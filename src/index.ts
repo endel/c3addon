@@ -14,14 +14,14 @@ const VALID_EXTENSIONS = [
     'wasm', 'xml'
 ];
 
-export function init (options) {
+export function init (options: any) {
     const type = options._[3];
     if (!downloads[type]) {
         console.error(`You must call "c3addon init [${Object.keys(downloads).join("|")}]"`);
         return;
     }
 
-    const outputPath = path.resolve(".");
+    const outputPath = getRootDir(options);
     const tmpZipPath = path.resolve('tmp.zip');
 
     const zipFile = fs.createWriteStream(tmpZipPath);
@@ -44,16 +44,16 @@ export function init (options) {
     });
 }
 
-export function serve (options?: any) {
+export function serve (options: any) {
     const port = options.port || 5432;
     const server = httpServer.createServer({ cors: true });
     server.listen(port);
     console.log(`Development server running on: http://localhost:${port}`);
 }
 
-export function pack () {
+export function pack (options: any) {
     const filename = 'addon.c3addon';
-    const pluginDir = path.resolve('.');
+    const pluginDir = getRootDir(options)
 
     const output = fs.createWriteStream(`${pluginDir}/${filename}`);
     output.on('close', function () {
@@ -78,6 +78,10 @@ export function pack () {
     archive.finalize();
 }
 
-export function docs () {
+export function docs (options: any) {
     console.log("Not implemented.");
+}
+
+function getRootDir (options) {
+    return path.resolve(options.root || ".");
 }
