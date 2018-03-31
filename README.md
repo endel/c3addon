@@ -2,7 +2,7 @@
 
 This tool helps you to build and distribute your Construct 3 Addons.
 
-See [TODO](#todo) of possible ideas for this utility tool. Feel free to open issues to propose new ideas.
+See [TODO](#todo) for ideas for this tool. Feel free to open issues to propose new ideas.
 
 ## Requirements
 
