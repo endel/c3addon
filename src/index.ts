@@ -31,10 +31,7 @@ export function help (options: any) {
         docs
         (Generate docs.md file based on your aces.json)
 
-    General help:
-        - C3 Addon SDK Documentation: https://www.construct.net/br/make-games/manuals/addon-sdk
-        - Enable developer mode on Construct 3: https://www.construct.net/br/make-games/manuals/addon-sdk/guide/using-developer-mode
-        - Open the Addon Manager, click on "Add dev addon", and enter this URL: http://localhost:5432/addon.json
+    C3 Addon SDK Documentation: https://www.construct.net/br/make-games/manuals/addon-sdk
 `);
 }
 
@@ -70,9 +67,21 @@ export function init (options: any) {
 
 export function serve (options: any) {
     const port = options.port || 5432;
-    const server = httpServer.createServer({ cors: true });
+
+    const server = httpServer.createServer({
+        root: getRootDir(options),
+        cors: true
+    });
+
     server.listen(port);
-    console.log(`Development server running on: http://localhost:${port}`);
+
+    console.log(`Development server started.`);
+    console.log('');
+    console.log(`1. Open the editor: https://editor.construct.net/`);
+    console.log(`2. Click on "Menu" > "View" > "Addon manager"`);
+    console.log(`3. Click on "Add dev addon". Enter this URL: http://localhost:${port}`);
+    console.log('');
+    console.log(`How to enable Developer Mode:\nhttps://www.construct.net/br/make-games/manuals/addon-sdk/guide/using-developer-mode`);
 }
 
 export function pack (options: any) {
