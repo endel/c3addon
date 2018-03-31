@@ -14,6 +14,30 @@ const VALID_EXTENSIONS = [
     'wasm', 'xml'
 ];
 
+export function help (options: any) {
+    console.log(`Usage:
+    c3addon [command] [options] [--root dir]
+
+    Available commands:
+        init [${Object.keys(downloads).join("|")}]
+        (Bootstrap an empty addon project)
+
+        serve [--port 8080]
+        (Start an http server for local development)
+
+        pack
+        (Pack your addon into addon.c3addon, to be uploaded on Construct 3 Addon Listing)
+
+        docs
+        (Generate docs.md file based on your aces.json)
+
+    General help:
+        - C3 Addon SDK Documentation: https://www.construct.net/br/make-games/manuals/addon-sdk
+        - Enable developer mode on Construct 3: https://www.construct.net/br/make-games/manuals/addon-sdk/guide/using-developer-mode
+        - Open the Addon Manager, click on "Add dev addon", and enter this URL: http://localhost:5432/addon.json
+`);
+}
+
 export function init (options: any) {
     const type = options._[3];
     if (!downloads[type]) {
