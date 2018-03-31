@@ -2,6 +2,8 @@
 
 This tool helps you to build and distribute your Construct 3 Addons.
 
+See [TODO](#todo) of possible ideas for this utility tool. Feel free to open issues to propose new ideas.
+
 ## Requirements
 
 Node.js v8.0.0+
@@ -30,6 +32,12 @@ server.
 ### `c3addon docs`
 
 Generate documentation based on your addon's `aces.json` + language files.
+
+## TODO
+
+- A `watch` command to watch and validate for ACEs and their language attributes. It's very annoying to refresh the editor and see error messages regarding missing language entries.
+- Implement the `docs` command - to generate a user-friendly list of actions, conditions and expressions.
+- On `init` command, use [inquirer](https://github.com/SBoudrias/Inquirer.js/) and ask the user for addon name, description, and all its basic properties.
 
 ## License
 
