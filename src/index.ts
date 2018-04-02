@@ -89,21 +89,20 @@ export function pack (options: any) {
     const addonJson = require(pluginDir + "/addon.json");
     const filename = `${addonJson.id}.c3addon`;
 
-    const output = fs.createWriteStream(`${path.resolve(".")}/${filename}`);
     const zipFile = new AdmZip();
 
     glob(`${pluginDir}/**/*.{${VALID_EXTENSIONS.join(',')}}`, (err, files) => {
         files.forEach(file => {
             if (file !== pluginDir) {
-                const relativeFilename = file.replace(pluginDir, "");
+                const relativeFilename = file.replace(pluginDir, "").substr(1);
                 console.log("Packing...", relativeFilename);
                 zipFile.addFile(relativeFilename, fs.readFileSync(file));
             }
         });
 
-        output.write(zipFile.toBuffer());
         console.log("Done.");
         console.log(`Generated: '${filename}'`);
+        zipFile.writeZip(`${path.resolve(".")}/${filename}`);
     });
 }
 
