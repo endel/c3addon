@@ -4,6 +4,7 @@ import * as path from "path";
 import * as AdmZip from "adm-zip";
 import * as httpServer from "http-server";
 import * as glob from "glob";
+import * as opn from "opn";
 
 const downloads = require("../data/downloads.json");
 
@@ -75,13 +76,14 @@ export function serve (options: any) {
 
     server.listen(port);
 
+    opn("https://editor.construct.net", { app: [getChromeName(), "--disable-web-security", "--disable-extensions", "--disable-plugins"] });
+
     console.log(`Development server started.`);
     console.log('');
-    console.log(`1. Open the editor: https://editor.construct.net/`);
-    console.log(`2. Click on "Menu" > "View" > "Addon manager"`);
-    console.log(`3. Click on "Add dev addon". Enter this URL: http://localhost:${port}`);
+    console.log(`1. Click on "Menu" > "View" > "Addon manager"`);
+    console.log(`2. Click on "Add dev addon". Enter this URL: http://localhost:${port}/addon.json`);
     console.log('');
-    console.log(`How to enable Developer Mode:\nhttps://www.construct.net/br/make-games/manuals/addon-sdk/guide/using-developer-mode`);
+    console.warn(`How to enable Developer Mode:\nhttps://www.construct.net/br/make-games/manuals/addon-sdk/guide/using-developer-mode`);
 }
 
 export function pack (options: any) {
@@ -112,4 +114,21 @@ export function docs (options: any) {
 
 function getRootDir (options) {
     return path.resolve(options.root || ".");
+}
+
+function getChromeName() {
+  const platform: any = process.platform;
+  let app = "";
+
+  if (platform == "darwin") {
+    app = "google chrome";
+
+  } else if (platform === "win32" || platform === "win64") {
+    app = "chrome"
+
+  } else if (platform == "linux") {
+    app = "google-chrome";
+  }
+
+  return app;
 }

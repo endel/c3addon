@@ -1,6 +1,6 @@
 {
   "name": "c3addon",
-  "version": "0.0.11",
+  "version": "0.1.0",
   "description": "Construct 3 Addon Authoring Commandline Utilities",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/gamestdio/c3addon.git"
+    "url": "git+ssh://git@github.com/endel/c3addon.git"
   },
   "keywords": [
     "construct3",
@@ -23,9 +23,9 @@
   "author": "Endel Dreyer",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gamestdio/c3addon/issues"
+    "url": "https://github.com/endel/c3addon/issues"
   },
-  "homepage": "https://github.com/gamestdio/c3addon#readme",
+  "homepage": "https://github.com/endel/c3addon#readme",
   "devDependencies": {
     "@types/adm-zip": "^0.4.31",
     "@types/archiver": "^2.1.1",
@@ -36,6 +36,7 @@
     "adm-zip": "^0.4.7",
     "glob": "^7.1.2",
     "http-server": "^0.11.1",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "opn": "^5.4.0"
   }
 }
