@@ -133,9 +133,11 @@ export function docs (options: any) {
             }
         }
 
-        ['actions', 'conditions', 'expressions'].forEach(acl => {
+        ['Actions', 'Conditions', 'Expressions'].forEach(aclName => {
+            const acl = aclName.toLowerCase();
+
             if (Object.keys(plugin[acl]).length > 0) {
-                markdownOutput += "## Actions\n\n"
+                markdownOutput += `## ${aclName}\n\n`
 
                 for (const name in plugin[acl]) {
                     const child = plugin[acl][name];
