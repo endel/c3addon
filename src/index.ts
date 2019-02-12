@@ -109,7 +109,44 @@ export function pack (options: any) {
 }
 
 export function docs (options: any) {
-    console.log("Not implemented.");
+    const inputPath = getRootDir(options);
+    const langFilePath = path.resolve(inputPath, "lang", "en-US.json");
+
+    if (!fs.existsSync(langFilePath)) {
+        console.error(`File not found: '${langFilePath}'`);
+        process.exit();
+    }
+    const langFile = JSON.parse(fs.readFileSync(langFilePath).toString());
+    let markdownOutput = "";
+
+    for (const pluginName in langFile.text.plugins) {
+        const plugin = langFile.text.plugins[pluginName];
+        markdownOutput += `# ${pluginName}\n\n`;
+
+        if (Object.keys(plugin.properties).length > 0) {
+            markdownOutput += "## Properties\n\n"
+
+            for (const propertyName in plugin.properties) {
+                const property = plugin.properties[propertyName];
+                markdownOutput += `### ${property.name}\n`
+                markdownOutput += `${property.desc}\n\n`;
+            }
+        }
+
+        ['actions', 'conditions', 'expressions'].forEach(acl => {
+            if (Object.keys(plugin[acl]).length > 0) {
+                markdownOutput += "## Actions\n\n"
+
+                for (const name in plugin[acl]) {
+                    const child = plugin[acl][name];
+                    markdownOutput += `### ${child['display-text'] || child['translated-name']}\n`
+                    markdownOutput += `${child['description']}\n\n`;
+                }
+            }
+        });
+    }
+
+    console.log(markdownOutput);
 }
 
 function getRootDir (options) {
