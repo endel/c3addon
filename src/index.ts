@@ -1,19 +1,11 @@
-import * as https from "https";
-import * as fs from "fs";
-import * as path from "path";
-import * as AdmZip from "adm-zip";
-import * as httpServer from "http-server";
-import * as glob from "glob";
-import * as opn from "opn";
+import https from "https";
+import fs from "fs";
+import path from "path";
+import httpServer from "http-server";
+import opn from "opn";
+import * as ZipLib from "zip-lib";
 
 const downloads = require("../data/downloads.json");
-
-const VALID_EXTENSIONS = [
-    'bmp', 'css', 'fx', 'gif', 'ico',
-    'jpeg', 'jpg', 'js', 'json', 'md',
-    'mem', 'node', 'png', 'svg', 'txt',
-    'wasm', 'xml'
-];
 
 export function help (options: any) {
     console.log(`Usage:
@@ -52,17 +44,12 @@ export function init (options: any) {
     });
 
     zipFile.on('close', function () {
-        // extract zip contents
-        const zip = new AdmZip(tmpZipPath);
-        zip.extractAllTo(outputPath);
-
-        const entries = zip.getEntries(); // an array of ZipEntry records
-        entries.forEach((zipEntry) => console.log("Added:", zipEntry.entryName));
+        ZipLib.extract(tmpZipPath, outputPath);
 
         // remove temporary zip file
         fs.unlinkSync(tmpZipPath);
 
-        console.log("Success!");
+        console.log("Extracted template into", outputPath);
     });
 }
 
@@ -86,26 +73,14 @@ export function serve (options: any) {
     console.warn(`How to enable Developer Mode:\nhttps://www.construct.net/br/make-games/manuals/addon-sdk/guide/using-developer-mode`);
 }
 
-export function pack (options: any) {
+export async function pack (options: any) {
     const pluginDir = getRootDir(options)
     const addonJson = require(pluginDir + "/addon.json");
     const filename = `${addonJson.id}.c3addon`;
+    const outputAddonFile = `${path.resolve(".")}/${filename}`;
 
-    const zipFile = new AdmZip();
-
-    glob(`${pluginDir}/**/*.{${VALID_EXTENSIONS.join(',')}}`, (err, files) => {
-        files.forEach(file => {
-            if (file !== pluginDir) {
-                const relativeFilename = file.replace(pluginDir, "").substr(1);
-                console.log("Packing...", relativeFilename);
-                zipFile.addFile(relativeFilename, fs.readFileSync(file));
-            }
-        });
-
-        console.log("Done.");
-        console.log(`Generated: '${filename}'`);
-        zipFile.writeZip(`${path.resolve(".")}/${filename}`);
-    });
+    await ZipLib.archiveFolder(pluginDir, outputAddonFile);
+    console.log("Created:", outputAddonFile);
 }
 
 export function docs (options: any) {

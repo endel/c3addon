@@ -2,6 +2,8 @@
 
 This tool helps you to build and distribute your Construct 3 Addons.
 
+> C3 Addon SDK Documentation: https://www.construct.net/br/make-games/manuals/addon-sdk
+
 See [TODO](#todo) for ideas for this tool. Feel free to open issues to propose new ideas.
 
 ## Requirements

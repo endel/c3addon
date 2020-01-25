@@ -1,6 +1,6 @@
 {
   "name": "c3addon",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Construct 3 Addon Authoring Commandline Utilities",
   "main": "index.js",
   "scripts": {
@@ -27,16 +27,15 @@
   },
   "homepage": "https://github.com/endel/c3addon#readme",
   "devDependencies": {
-    "@types/adm-zip": "^0.4.31",
     "@types/archiver": "^2.1.1",
     "@types/node": "^9.6.1",
     "typescript": "^2.8.1"
   },
   "dependencies": {
-    "adm-zip": "^0.4.7",
     "glob": "^7.1.2",
     "http-server": "^0.11.1",
     "minimist": "^1.2.0",
-    "opn": "^5.4.0"
+    "opn": "^5.4.0",
+    "zip-lib": "^0.5.0"
   }
 }
