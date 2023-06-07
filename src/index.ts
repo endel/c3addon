@@ -54,7 +54,7 @@ export function init (options: any) {
 }
 
 export function serve (options: any) {
-    const port = options.port || 5432;
+    const port = options.port || 65432;
 
     const server = httpServer.createServer({
         root: getRootDir(options),
