@@ -1,6 +1,6 @@
 {
   "name": "c3addon",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Construct 3 Addon Authoring Commandline Utilities",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,7 @@
   "bin": {
     "c3addon": "./bin/c3addon"
   },
+  "files": [ "README.md", "lib", "bin" ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/endel/c3addon.git"
