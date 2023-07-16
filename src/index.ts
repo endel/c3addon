@@ -1,9 +1,14 @@
 import https from "https";
+import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
 import httpServer from "http-server";
 import opn from "opn";
 import * as ZipLib from "zip-lib";
+import { PublishOptions, publish as publishUsingPuppeteer } from "./publish";
+
+// load .env file
+dotenv.config({ path: path.resolve(".") });
 
 const downloads = require("../data/downloads.json");
 
@@ -20,6 +25,9 @@ export function help (options: any) {
 
         pack
         (Pack your addon into addon.c3addon, to be uploaded on Construct 3 Addon Listing)
+
+        publish
+        (Publishes your addon to Construct3 Addons page)
 
         docs
         (Generate docs.md file based on your aces.json)
@@ -124,6 +132,10 @@ export function docs (options: any) {
     }
 
     console.log(markdownOutput);
+}
+
+export async function publish (options: PublishOptions = {}) {
+  await publishUsingPuppeteer(options);
 }
 
 function getRootDir (options) {

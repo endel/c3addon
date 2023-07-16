@@ -2,11 +2,13 @@
     "compilerOptions": {
         "outDir": "lib",
         "module": "commonjs",
-        "lib": ["es6"],
-        "target": "es2016",
+        "target": "ESNext",
+        "moduleResolution": "node",
+        "forceConsistentCasingInFileNames": true,
         "declaration": true,
         "esModuleInterop": true,
         "noImplicitAny": false,
+        "skipLibCheck": true,
         "sourceMap": false
     },
     "include": [
