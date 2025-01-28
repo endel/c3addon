@@ -1,3 +1,5 @@
+# NOT MAINTAINED. PLEASE CHECK OUT [ConstructFund/c3addon](https://github.com/ConstructFund/c3addon) INSTEAD.
+
 # Construct 3 Addon Authoring Commandline Utilities (`c3addon`)
 
 This tool helps you to build and distribute your Construct 3 Addons.
